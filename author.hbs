@@ -1,0 +1,49 @@
+{{!< default}}
+{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
+
+{{!-- The big featured header --}}
+
+{{!-- Everything inside the #author tags pulls data from the author --}}
+{{#author}}
+
+    <div id="headerwrap" class="
+        {{#if image}}
+        cover" style="background-image: url({{image}})""
+        {{else}}
+        {{#if @blog.cover}}
+        cover" style="background-image: url({{@blog.cover}})""
+        {{else}}
+        no-cover
+        {{/if}}
+        {{/if}}"
+        >
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+              {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>{{/if}}
+              <h1>{{name}}</h1>
+              {{#if bio}}
+                  <h2 class="author-bio">{{bio}}</h2>
+              {{/if}}
+              <div class="author-meta">
+                  {{#if location}}<span class="author-location icon-location"><i class="fa fa-home"></i> {{location}} </span>{{/if}}
+                  {{#if website}}<span class="author-link icon-link"><i class="fa fa-external-link"></i> <a href="{{website}}">{{website}}</a></span>{{/if}}
+                  <span class="author-stats"> <i class="fa fa-bar-chart"></i>  {{plural ../pagination.total empty='No posts' singular='% post' plural='% posts'}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+{{/author}}
+
+{{!-- The main content area on the homepage --}}
+<main class="content" role="main">
+  <div class="container">
+    <div class="row mt mb">
+
+      {{!-- The tag below includes the post loop - partials/loop.hbs --}}
+      {{> "loop"}}
+    </div>
+  </div>
+</main>

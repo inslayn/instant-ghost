@@ -1,0 +1,44 @@
+{{!< default}}
+{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
+
+{{!-- The big featured header --}}
+<div id="headerwrap" class="{{#if @blog.cover}}
+    cover" style="background-image: url({{@blog.cover}})""
+    {{else}}
+    no-cover
+    {{/if}}"
+    >
+    <div class="container">
+      <div class="row centered">
+        <div class="col-lg-6 col-lg-offset-3">
+          {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>{{/if}}
+        </div>
+        <div class="row centered">
+          <div class="col-lg-6 col-lg-offset-3">
+            <h4>{{@blog.description}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="container">
+  <div class="row centered mt mb">
+    <h1>Featured Projects</h1> {{!-- Make this be the label of the featured project tag --}}
+
+    {{#get "posts" order="title asc" include="tags" filter="tags:[hash-featured, hash-portfolio]"}}
+      {{#foreach posts}}
+        {{#has tag="#portfolio"}}
+          {{#has tag="#featured"}}
+            <div class="col-lg-4 col-md-4 col-sm-4 gallery">
+              <a href="{{url}}"><img src="{{image}}" class="img-responsive"></a>
+              <span>{{title}}</span>
+            </div>
+          {{/has}}
+        {{/has}}
+      {{/foreach}}
+    {{/get}}
+  </div>
+</div>
+
+</main>

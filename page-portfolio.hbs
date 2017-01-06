@@ -1,0 +1,55 @@
+{{!< default}}
+
+{{!-- This is a page template. A page outputs content just like any other post, and has all the same
+    attributes by default, but you can also customise it to behave differently if you prefer. --}}
+
+{{!-- Everything inside the #post tags pulls data from the page --}}
+{{#post}}
+
+<div id="headerwrap" class="
+    {{#if image}}
+    cover" style="background-image: url({{image}})""
+    {{else}}
+    {{#if @blog.cover}}
+    cover" style="background-image: url({{@blog.cover}})""
+    {{else}}
+    no-cover
+    {{/if}}
+    {{/if}}"
+    >
+    <div class="container">
+      <div class="row centered">
+        <div class="col-lg-6 col-lg-offset-3">
+          {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>{{/if}}
+        </div>
+      </div>
+      <div class="row centered">
+        <div class="col-lg-6 col-lg-offset-3">
+          <h1>{{title}}</h1>
+        </div>
+      </div>
+    </div>
+</div>
+
+<main class="content" role="main">
+  <div class="container">
+    <div class="row centered mt mb">
+      {{content}}
+    </div>
+    <div class="row centered mt mb">
+      <hr />
+      <h1>Projects I've Worked On</h1>
+
+        {{#get "posts" order="title asc" filter="tag:hash-portfolio"}}
+          {{#foreach posts}}
+              <div class="col-lg-4 col-md-4 col-sm-4 gallery">
+                <a href="{{url}}"><img src="{{image}}" class="img-responsive"></a>
+                <span>{{title}}</span>
+              </div>
+          {{/foreach}}
+        {{/get}}
+    </div>
+  </div>
+</main>
+
+{{/post}}

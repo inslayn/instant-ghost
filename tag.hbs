@@ -1,0 +1,45 @@
+{{!< default}}
+{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
+
+{{!-- If we have a tag cover, display that - else blog cover - else nothing --}}
+
+  <div id="headerwrap" class="
+      {{#if tag.image}}
+      cover" style="background-image: url({{tag.image}})""
+      {{else}}
+      {{#if @blog.cover}}
+      cover" style="background-image: url({{@blog.cover}})""
+      {{else}}
+      no-cover
+      {{/if}}
+      {{/if}}"
+      >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-lg-offset-3">
+            {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>{{/if}}
+            {{#tag}}
+            <h1 class="page-title">{{name}}</h1>
+            <h2 class="page-description">
+                {{#if description}}
+                    {{description}}
+                {{else}}
+                    A {{../pagination.total}}-post collection
+                {{/if}}
+            </h2>
+            {{/tag}}
+          </div>
+        </div>
+      </div>
+  </div>
+
+{{!-- The main content area on the homepage --}}
+<main class="content" role="main">
+  <div class="container">
+    <div class="row mt mb">
+      {{!-- The tag below includes the post loop - partials/loop.hbs --}}
+      {{> "loop"}}
+    </div>
+  </div>
+
+</main>

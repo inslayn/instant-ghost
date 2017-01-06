@@ -1,0 +1,87 @@
+<div id="social">
+  <div class="container">
+    <div class="row centered">
+    </div>
+  </div>
+</div>
+
+<script>
+  function formSocialMediaUrl(socialNetwork, username) {
+    switch (socialNetwork) {
+      case 'Bitbucket':
+        return 'https://bitbucket.org/' + username;
+      case 'Deviantart':
+        return 'https://' + username + '.deviantart.com';
+      case 'Facebook':
+        return 'https://www.facebook.com/' + username;
+      case 'Flickr':
+        return 'https://www.flickr.com/' + username;
+      case 'Github':
+        return 'https://github.com/' + username;
+      case 'Instagram':
+        return 'https://www.instagram.com/' + username;
+      case 'Linkedin':
+        return 'https://www.linkedin.com/in/' + username;
+      case 'Pinterest':
+        return 'https://www.pinterest.com/' + username;
+      case 'Soundcloud':
+        return 'https://soundcloud.com/' + username;
+      case 'Twitch':
+        return 'http://www.twitch.tv/' + username;
+      case 'Twitter':
+        return 'https://twitter.com/' + username;
+      case 'Vimeo':
+        return 'https://vimeo.com/' + username;
+      case 'Youtube':
+        return 'https://www.youtube.com/user/' + username;
+      case 'LastFM':
+        return 'http://www.last.fm/user/' + username;
+      case 'Tumblr':
+        return 'http://' + username + '.tumblr.com';
+      case 'Dribbble':
+        return 'https://dribbble.com/' + username;
+      case 'StackOverflow':
+        return 'http://stackoverflow.com/users/' + username;
+      case 'Gitlab':
+        return 'https://gitlab.com/users/' + username;
+    }
+  }
+
+  function revealSocialLink(socialNetwork) {
+    var usernameProp = socialNetwork.toLowerCase().replace('-', '') + 'Username';
+    if (window.__themeCfg[usernameProp]) {
+      $('#social').find('div.row').append('<div class="col-lg-2">\
+          <a class="social-link ' + socialNetwork.toLowerCase() + ' hidden" target="_blank"><i class="fa fa-' + socialNetwork.toLowerCase() + '"></i></a>\
+        </div>')
+      $('.social-link.' + socialNetwork.toLowerCase()).removeClass('hidden');
+      $('.social-link.' + socialNetwork.toLowerCase()).attr('href', formSocialMediaUrl(socialNetwork, window.__themeCfg[usernameProp]));
+    } else {
+      console.warn('To add a ' + socialNetwork + ' profile link to your blog, put "\<script\>window.__themeCfg.' + usernameProp + ' = \'my' + socialNetwork + 'Username\';\</script\>" in Ghost code injection!');
+    }
+  }
+
+  function revealSocialLinks() {
+    revealSocialLink('Gitlab');
+    revealSocialLink('Github');
+    revealSocialLink('Bitbucket');
+    revealSocialLink('Linkedin');
+    revealSocialLink('Stack-Overflow');
+    revealSocialLink('Deviantart');
+
+    revealSocialLink('Dribbble');
+    revealSocialLink('Tumblr');
+    revealSocialLink('Flickr');
+    revealSocialLink('Pinterest');
+    revealSocialLink('Soundcloud');
+    revealSocialLink('LastFM');
+
+    revealSocialLink('Twitter');
+    revealSocialLink('Facebook');
+    revealSocialLink('Instagram');
+    revealSocialLink('Vimeo');
+    revealSocialLink('Youtube');
+    revealSocialLink('Twitch');
+  }
+
+  $(revealSocialLinks);
+  </script>

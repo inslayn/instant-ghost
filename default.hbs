@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{!-- Document Settings --}}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {{!-- Page Meta --}}
+    <title>{{meta_title}}</title>
+    <meta name="description" content="{{meta_description}}" />
+
+    {{!-- Mobile Meta --}}
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {{!-- Brand icon --}}
+    <link rel="shortcut icon" href="{{asset "favicon.ico"}}">
+
+    {{!-- Styles'n'Scripts --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/bootstrap.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "css/style.css"}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset "css/font-awesome.min.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "css/contact.css"}}" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script>window.__themeCfg = {};</script>
+    {{!-- jQuery needs to come before ghost_head and ghost_foot so that jQuery can be used in code injection --}}
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+
+    {{!-- Ghost outputs important style and meta data with this tag --}}
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+
+    {{!-- The blog navigation links --}}
+    {{navigation}}
+
+    <div class="site-wrapper">
+
+        {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+        {{{body}}}
+
+      	{{>socialmedia}}
+
+        {{!-- The tiny footer at the very bottom --}}
+        <div id="footerwrap">
+      		<div class="container">
+      			<div class="row centered">
+      				<div class="col-lg-6">
+      					<section class="copyright">&copy; {{date format="YYYY"}} <a href="{{@blog.url}}">{{@blog.title}}</a></section>
+      				</div>
+      				<div class="col-lg-6">
+      					<section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+      				</div>
+      			</div>
+      		</div>
+      	</div>
+    </div>
+
+    {{>google_analytics}}
+
+    {{!-- Ghost outputs important scripts and data with this tag --}}
+    {{ghost_foot}}
+    <script type="text/javascript" src="{{asset "js/bootstrap.min.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/moment.min.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/ajaxPagination.js"}}"></script>
+    <script id="dsq-count-scr" src="//ghostdemoblog.disqus.com/count.js" async></script>
+</body>
+</body>
+</html>
