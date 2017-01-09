@@ -2,7 +2,7 @@
     "name": "InstantGhost",
     "description": "Theme for Ghost based on the Instant theme by http://blacktie.co/",
     "demo": "https://nickmcvroom.com",
-    "version": "0.9.4",
+    "version": "0.9.5",
     "engines": {
         "ghost": ">=0.9.0 <1.0.0"
     },
